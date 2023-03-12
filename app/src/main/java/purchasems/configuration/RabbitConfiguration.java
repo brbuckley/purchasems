@@ -13,10 +13,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitConfiguration {
 
+  private final RabbitConfig rabbitConfig;
+
   @Bean
   public CachingConnectionFactory connectionFactory() {
-    // ToDo: change to rabbitmq host at pipeline
-    return new CachingConnectionFactory("localhost");
+    return new CachingConnectionFactory(rabbitConfig.getHost());
   }
 
   @Bean

@@ -1,5 +1,13 @@
 spring:
   datasource:
-    url: 'jdbc:postgresql://postgres:5432/purchasems'
+    url: 'jdbc:postgresql://purchase-postgres:5432/purchasems'
   rabbitmq:
     host: rabbitmq
+
+productms:
+  endpoint: 'http://product:8080/'
+
+adapters:
+  supplierAendpoint: 'http://adapter-a:8080/'
+  supplierBendpoint: 'http://adapter-b:8080/'
+  supplierCendpoint: 'http://adapter-c:8080/'

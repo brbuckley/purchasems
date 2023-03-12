@@ -23,6 +23,8 @@ spring:
   web:
     resources:
       add-mappings: false
+  rabbitmq:
+    host: rabbitmq
 
 management:
   info:
