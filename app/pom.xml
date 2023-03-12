@@ -7,6 +7,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>app</artifactId>
+    <packaging>jar</packaging>
     <properties>
         <dependency.postgres.version>42.3.3</dependency.postgres.version>
         <dependency.mockito.version>4.2.0</dependency.mockito.version>
@@ -105,6 +106,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>purchasems</finalName>
         <plugins>
             <plugin>
                 <groupId>org.flywaydb</groupId>
