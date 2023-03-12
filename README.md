@@ -1,4 +1,4 @@
-# 7-purchase
+# PurchaseMS
 
 ## Installation
 It is recommended to install the modules separately, the purchase module is independent so these commands should do :
