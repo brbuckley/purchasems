@@ -1,6 +1,7 @@
 package purchasems.api.controller;
 
 import static org.mockito.BDDMockito.given;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -31,7 +32,7 @@ public class PurchaseControllerIntegrationTest {
     given(purchaseService.getPurchase("PUR0000001"))
         .willReturn(PurchaseMsResponseUtil.defaultPurchaseResponse());
     mockMvc
-        .perform(get("/PUR0000001"))
+        .perform(get("/PUR0000001").with(jwt()))
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(
@@ -44,7 +45,7 @@ public class PurchaseControllerIntegrationTest {
 
   @Test
   public void testGetPurchase_whenInvalidPurchaseId_then400() throws Exception {
-    mockMvc.perform(get("/invalid")).andDo(print()).andExpect(status().isBadRequest());
+    mockMvc.perform(get("/invalid").with(jwt())).andDo(print()).andExpect(status().isBadRequest());
   }
 
   @Test
@@ -52,7 +53,7 @@ public class PurchaseControllerIntegrationTest {
     given(purchaseService.getPurchases(null, "asc.datetime", 50, 0))
         .willReturn(PurchaseMsResponseUtil.defaultPurchaseListResponse());
     mockMvc
-        .perform(get("/"))
+        .perform(get("/").with(jwt()))
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(
@@ -68,7 +69,7 @@ public class PurchaseControllerIntegrationTest {
     given(purchaseService.getPurchases("ORD0000001", "asc.datetime", 50, 0))
         .willReturn(PurchaseMsResponseUtil.defaultPurchaseListResponse());
     mockMvc
-        .perform(get("/?order-id=ORD0000001"))
+        .perform(get("/?order-id=ORD0000001").with(jwt()))
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(
@@ -84,7 +85,7 @@ public class PurchaseControllerIntegrationTest {
     given(purchaseService.getPurchases("invalid", "asc.datetime", 50, 0))
         .willReturn(PurchaseMsResponseUtil.defaultPurchaseListResponse());
     mockMvc
-        .perform(get("/?order-id=invalid"))
+        .perform(get("/?order-id=invalid").with(jwt()))
         .andDo(print())
         .andExpect(status().isBadRequest())
         .andExpect(

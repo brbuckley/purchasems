@@ -15,9 +15,6 @@ public interface PurchaseRepository extends JpaRepository<PurchaseEntity, Intege
   PurchaseEntity findPurchaseEntityByPurchaseId(String purchaseId);
 
   // If orderId is null, this query returns a page of all Purchases persisted.
-  @Query(
-      "select p from PurchaseEntity p where "
-          + "( (coalesce(:orderId) is null) or "
-          + "(coalesce(:orderId) is not null and p.orderId = :orderId) ) ")
+  @Query("select p from PurchaseEntity p where " + "( :orderId is null or  p.orderId = :orderId )")
   List<PurchaseEntity> findByOrderIdPagination(@Param("orderId") String orderId, Pageable pageable);
 }
