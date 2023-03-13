@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
+/** RabbitMq Configuration. */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,5 +16,5 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 @ConfigurationProperties(prefix = "spring.rabbitmq")
 public class RabbitConfig {
 
-    private String host;
+  private String host;
 }
